@@ -1,0 +1,107 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-tooltip/paper-tooltip.html">
+
+
+
+
+<!--
+`ebook-button`
+This is a button for ebooks.
+
+@demo demo/index.html
+-->
+
+<dom-module id="ebook-button">
+  <template>
+    <style>
+       :host {
+        display: block;
+        --paper-button-click-state: #000;
+        --paper-button-title: #000;
+        --link-color: #aeaeae;
+      }
+
+      paper-button {
+        text-transform: none;
+        padding: 10px 25px 10px 0;
+      }
+
+      paper-button:active, paper-button:focus, paper-button:hover {
+        color: var(--paper-button-click-state);
+      }
+
+      .book_icon {
+        height: 55px;
+        width: 55px;
+        margin-right: 5px;
+      }
+
+      .title {
+        color: var(--paper-button-title);
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      a:-webkit-any-link {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+   
+    </style>
+
+
+
+
+    <div id="button wrapper">
+      <template is="dom-if" if="{{link}}">
+        <a href$="{{link}}">
+          <paper-button raised noink id="book">
+            <iron-icon icon="book" class="book_icon"></iron-icon>
+            <div class="title">{{title}}</div>
+          </paper-button>
+        </a>
+        <paper-tooltip for="book">eBook</paper-tooltip>
+      </template>
+    </div>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'ebook-button',
+
+      properties: {
+
+
+        /**
+         * The title of the button.
+         */
+        title: {
+          type: String,
+          reflectToAttribute: true,
+          notify: true,
+        },
+
+        /**
+         * The destination of the button.
+         */
+        link: {
+          type: String,
+          reflectToAttribute: true,
+          notify: true,
+        },
+
+
+
+
+      },
+
+    });
+  </script>
+</dom-module>
